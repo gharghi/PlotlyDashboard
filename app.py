@@ -35,7 +35,7 @@ def make_weather_table(dtf):
 def api_call(input_value='Lisbon'):
     city = input_value.replace(' ', '').split(' ')[0]
     state = ''
-    key = '5fe7f6ffc20f14f114b4b014a8439ebc' 
+    key = '' 
     r = \
         requests.get('http://api.openweathermap.org/data/2.5/forecast?q={},{}&appid={}&units=metric'.format(city,
                      state, key))
@@ -175,4 +175,4 @@ for css in external_css:
     app.css.append_css({'external_url': css})
 
 if __name__ == '__main__':
-    app.run_server(port=8080, debug=True)
+    app.run_server(host='0.0.0.0',port=80)
