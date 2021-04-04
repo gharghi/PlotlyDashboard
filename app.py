@@ -197,6 +197,9 @@ def update_weather(input_value):
 #     static_folder = os.path.join(os.getcwd(), 'assests')
 #     return send_from_directory(static_folder, path)
 
+@app.server.route("assets/css/skeleton.min.css")
+def serve_static():
+    return flask.send_file("./assets/css/skeleton.min.css", mimetype="css")
 
 if __name__ == '__main__':
     app.run_server(host='0.0.0.0',port=80)
