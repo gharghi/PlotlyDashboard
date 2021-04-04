@@ -101,11 +101,11 @@ app.layout = html.Div([
         dcc.Location(id='url', refresh=False),
         html.Link(
             rel='stylesheet',
-            href='/assests/css/skeleton.min.css'
+            href='/assets/css/skeleton.min.css'
         ),
         html.Link(
             rel='stylesheet',
-            href='/assests/css/dash-drug-discovery-demo-stylesheet.css'
+            href='/assets/css/dash-drug-discovery-demo-stylesheet.css'
         )
     ]),
     html.Div(id='page-content'),
