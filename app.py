@@ -189,17 +189,7 @@ def update_weather(input_value):
 #      'https://cdn.rawgit.com/plotly/dash-app-stylesheets/0e463810ed36927caf20372b6411690692f94819/dash-drug-discovery-demo-stylesheet.css'
 #      ]
 
-# for css in external_css:
-#     app.css.append_css({'external_url': css})
 
-# @app.server.route('/assets/<path:path>')
-# def static_file(path):
-#     static_folder = os.path.join(os.getcwd(), 'assests')
-#     return send_from_directory(static_folder, path)
-
-@app.server.route("assets/css/skeleton.min.css")
-def serve_static():
-    return flask.send_file("./assets/css/skeleton.min.css", mimetype="css")
 
 if __name__ == '__main__':
     app.run_server(host='0.0.0.0',port=80)
