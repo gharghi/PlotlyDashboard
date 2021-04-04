@@ -14,7 +14,7 @@ import plotly.express as px
 
 # initialize app
 
-app = dash.Dash(__name__, static_url_path='assets')
+app = dash.Dash(__name__, static_folder='assets')
 server = app.server
 app.config.suppress_callback_exceptions = True
 app.css.config.serve_locally = True
@@ -192,10 +192,10 @@ def update_weather(input_value):
 # for css in external_css:
 #     app.css.append_css({'external_url': css})
 
-@app.server.route('/assets/<path:path>')
-def static_file(path):
-    static_folder = os.path.join(os.getcwd(), 'assests')
-    return send_from_directory(static_folder, path)
+# @app.server.route('/assets/<path:path>')
+# def static_file(path):
+#     static_folder = os.path.join(os.getcwd(), 'assests')
+#     return send_from_directory(static_folder, path)
 
 
 if __name__ == '__main__':
