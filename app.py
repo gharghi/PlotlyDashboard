@@ -192,7 +192,7 @@ def update_weather(input_value):
 # for css in external_css:
 #     app.css.append_css({'external_url': css})
 
-@app.server.route('/assests/<path:path>')
+@app.server.route('/assets/<path:path>')
 def static_file(path):
     static_folder = os.path.join(os.getcwd(), 'assests')
     return send_from_directory(static_folder, path)
