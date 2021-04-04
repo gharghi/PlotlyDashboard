@@ -129,12 +129,12 @@ app.layout = html.Div([
               component_property='value')])
 def update_weather(input_value):
     icons = {
-        'snow': 'img/snow.png',
-        'cloud': 'img/cloudy.png',
-        'rain': 'img/rain.png',
-        'sunny': 'img/sunny.png',
-        'clear sky': 'img/sunny.png',
-        'fog': 'img/fog.png',
+        'snow': '/assets/img/snow.png',
+        'cloud': '/assets/img/cloudy.png',
+        'rain': '/assets/img/rain.png',
+        'sunny': '/assets/img/sunny.png',
+        'clear sky': '/assets/img/sunny.png',
+        'fog': '/assets/img/fog.png',
         }
     df = api_call(input_value)
 
