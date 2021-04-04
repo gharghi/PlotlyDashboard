@@ -11,9 +11,14 @@ import dash_html_components as html
 import plotly.graph_objs as go
 import plotly.express as px
 
+
 # initialize app
 
 app = dash.Dash()
+server = app.server
+app.config.suppress_callback_exceptions = True
+app.css.config.serve_locally = True
+app.scripts.config.serve_locally = True
 
 def make_weather_table(dtf):
 
@@ -35,7 +40,7 @@ def make_weather_table(dtf):
 def api_call(input_value='Lisbon'):
     city = input_value.replace(' ', '').split(' ')[0]
     state = ''
-    key = '5fe7f6ffc20f14f114b4b014a8439ebc' 
+    key = '' 
     r = \
         requests.get('http://api.openweathermap.org/data/2.5/forecast?q={},{}&appid={}&units=metric'.format(city,
                      state, key))
@@ -92,6 +97,19 @@ def degrees_to_cardinal(d):
 
 
 app.layout = html.Div([  
+    html.Div([
+        dcc.Location(id='url', refresh=False),
+        html.Link(
+            rel='stylesheet',
+            href='/assests/css/skeleton.min.css'
+        ),
+        html.Link(
+            rel='stylesheet',
+            href='/assests/css/dash-drug-discovery-demo-stylesheet.css'
+        )
+    ]),
+    html.Div(id='page-content'),
+    
     html.Div([html.H1('Weather Forcast with OpenWeatherMapApi'
              , style={'font-family': 'Dosis', 'font-size': '4.0rem',
              'textAlign': 'center'})]),
@@ -164,15 +182,21 @@ def update_weather(input_value):
 
     return app.layout
 
-external_css = \
-    ['https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'
-     , '//fonts.googleapis.com/css?family=Raleway:400,300,600',
-     '//fonts.googleapis.com/css?family=Dosis:Medium',
-     'https://cdn.rawgit.com/plotly/dash-app-stylesheets/0e463810ed36927caf20372b6411690692f94819/dash-drug-discovery-demo-stylesheet.css'
-     ]
+# external_css = \
+#     ['https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'
+#      , '//fonts.googleapis.com/css?family=Raleway:400,300,600',
+#      '//fonts.googleapis.com/css?family=Dosis:Medium',
+#      'https://cdn.rawgit.com/plotly/dash-app-stylesheets/0e463810ed36927caf20372b6411690692f94819/dash-drug-discovery-demo-stylesheet.css'
+#      ]
 
-for css in external_css:
-    app.css.append_css({'external_url': css})
+# for css in external_css:
+#     app.css.append_css({'external_url': css})
+
+@app.server.route('/assests/<path:path>')
+def static_file(path):
+    static_folder = os.path.join(os.getcwd(), 'assests')
+    return send_from_directory(static_folder, path)
+
 
 if __name__ == '__main__':
-    app.run_server(port=8080, debug=True)
+    app.run_server(host='0.0.0.0',port=80)
