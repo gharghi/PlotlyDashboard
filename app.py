@@ -110,7 +110,7 @@ app.layout = html.Div([
     ]),
     html.Div(id='page-content'),
     
-    html.Div([html.H1('Weather Forcast with OpenWeatherMapApi'
+    html.Div([html.H1('Weather Forecast with OpenWeatherMapApi'
              , style={'font-family': 'Dosis', 'font-size': '4.0rem',
              'textAlign': 'center'})]),
     html.Div([html.P('Enter City and country code or just city'),
@@ -171,7 +171,7 @@ def update_weather(input_value):
                  y=list(df.Humidity), mode='lines+markers',
                  name='Humidity'), go.Scatter(x=list(df.Day),
                  y=list(df.Wind), mode='lines+markers', name='wind')],
-                 layout=go.Layout(title='Five Day Weather Forcast For {}'.format(input_value),
+                 layout=go.Layout(title='Five Day Weather Forecast For {}'.format(input_value),
                  showlegend=True, margin=go.Margin(l=20, r=0, t=40,
                  b=20))))]),
         html.Div([html.Br(), html.Hr(),
